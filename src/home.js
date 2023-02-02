@@ -121,7 +121,7 @@ console.log(frequentNumbers);
 
   //calculating first stake
   function calculateCapital() {
-    const label = Math.round(cal / 3);
+    const label = Math.round(cal / 10);
     setFirstStake(Math.floor(label * 0.0167));
     setSecondStake(Math.floor(label * 0.0667));
     setThirdStake(Math.floor(label * 0.2167));
