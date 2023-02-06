@@ -4,6 +4,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import Typewriter from "typewriter-effect";
+import LogoutButton from "./LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Home() {
   const [cal, setCal] = React.useState();
@@ -129,29 +131,37 @@ console.log(frequentNumbers);
     setLabels(label);
   }
 
-  function logout() {
+/*   function logout() {
     localStorage.clear();
     window.location.reload();
-  }
+  } */
 
-  return (
+  const {  user, isAuthenticated, isLoading } = useAuth0();
+    
+ 
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+  return (  isAuthenticated && (
+    
     <div className="App">
       <div className="header">
-        <div className="logout" onClick={logout}>
-          <p>logout?</p>
+      <div className="logout">
+  
+  <h3>User: &nbsp;{user.name}</h3>
+        <LogoutButton />
         </div>{" "}
         <div className="ifrme">
           {" "}
           <h1>
-            Win Consistently On{" "}
+            Maximize your winnings On{" "}
             <span className="ja">
               49<span className="j">ja</span>{" "}
             </span>
             !!!{" "}
           </h1>
-          <marquee behavior="scroll" direction="left" className="my-number">
-            <h2>Contact On Whatsapp +2348101530401</h2>
-          </marquee>
+      
         </div>
       </div>
 
@@ -470,7 +480,7 @@ console.log(frequentNumbers);
 
       <div className="footer">&copy; All Rights Reserved</div>
     </div>
-  );
+  ))
 }
 
 export default Home;
